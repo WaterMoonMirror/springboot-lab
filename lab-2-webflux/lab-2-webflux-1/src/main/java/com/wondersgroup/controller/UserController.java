@@ -2,8 +2,10 @@ package com.wondersgroup.controller;
 
 import com.wondersgroup.dto.UserAddDTO;
 import com.wondersgroup.dto.UserUpdateDTO;
+import com.wondersgroup.service.UserService;
 import com.wondersgroup.vo.UserVO;
 import org.reactivestreams.Publisher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,6 +23,24 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    /**
+     * 获得指定用户编号的用户
+     *
+     * @param id 用户编号
+     * @return 用户
+     */
+    @GetMapping("/v2/get")
+    public Mono<UserVO> get2(@RequestParam("id") Integer id) {
+        // 查询用户
+        UserVO user = userService.get(id);
+        // 返回
+        return Mono.just(user);
+    }
+
     /**
      * 查询用户列表
      *
