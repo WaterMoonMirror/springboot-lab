@@ -9,6 +9,7 @@
     <modules>
         <module>lab-1-mapstruct</module>
         <module>lab-1-mapstruct/lab-1-mapstruct-demo-lombok</module>
+        <module>lab-2-webflux</module>
     </modules>
 
 </project>
